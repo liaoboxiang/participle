@@ -4,7 +4,7 @@
 var express = require('express');
 var app = express();
 
-//var participle = require('./participle.js');
+var participle = require('./participle.js');
 
 var config = require('./config.json');
 var listenPort = config.port;

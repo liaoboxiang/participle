@@ -4,7 +4,7 @@
 var express = require('express');
 var app = express();
 
-var participle = require('./participle.js');
+//var participle = require('./participle.js');
 
 var config = require('./config.json');
 var listenPort = config.port;
@@ -13,11 +13,20 @@ process.on('uncaughtException', function (err) {
     console.error('Caught exception: ' + err.stack);
 });
 
-app.get('/', function (req, res) {
-    var text = req.query.str;
-    var words = participle.division(text);
+app.get('/cut', function (req, res) {
+    var text = req.query.text;
+    var words = participle.cut(text);
+    var wordStr = JSON.stringify(words);
+    res.send(wordStr);
+});
+
+app.get('/extract', function (req, res) {
+    var text = req.query.text;
+    var topN = req.query.topN ? req.query.topN : 3;
+    var words = participle.extract(text, topN);
     var wordStr = JSON.stringify(words);
     res.send(wordStr);
 });
 
 app.listen(listenPort);
+console.log("port", listenPort);

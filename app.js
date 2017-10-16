@@ -15,8 +15,9 @@ process.on('uncaughtException', function (err) {
 
 app.get('/', function (req, res) {
     var text = req.query.str;
-    participle.division(text);
-    res.send('Hello World');
+    var res = participle.division(text);
+    var resStr = JSON.stringify(res);
+    res.send(resStr);
 });
 
 app.listen(listenPort);

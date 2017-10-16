@@ -12,6 +12,6 @@ participle.cut = function(text){
 
 
 participle.extract = function(text, topN){
-    var result = extract.cut(text, topN);
+    var result = nodejieba.extract(text, topN);
     return result;
 };

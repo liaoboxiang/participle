@@ -16,16 +16,14 @@ process.on('uncaughtException', function (err) {
 app.get('/cut', function (req, res) {
     var text = req.query.text;
     var words = participle.cut(text);
-    var wordStr = JSON.stringify(words);
-    res.send(wordStr);
+    res.send(words);
 });
 
 app.get('/extract', function (req, res) {
     var text = req.query.text;
     var topN = req.query.topN ? req.query.topN : 3;
     var words = participle.extract(text, topN);
-    var wordStr = JSON.stringify(words);
-    res.send(wordStr);
+    res.send(words);
 });
 
 app.listen(listenPort);
